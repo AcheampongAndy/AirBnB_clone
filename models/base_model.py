@@ -13,7 +13,7 @@ class BaseModel:
         kwargs:
         it allows the function to accept any number of keyword arguments.
         """
-        if kwargs is not NONE and kwargs != {}:
+        if kwargs is not None and kwargs != {}:
             for keyword in kwargs:
                 if keyword == "created_at":
                     self.__dict__["created_at"] = datetime.strptime(
@@ -27,7 +27,7 @@ class BaseModel:
             self.id = str(uuid.uuid4())
             self.created_at = datetime.now()
             self.updated_at = datetime.now()
-            storage.new(self)
+            models.storage.new(self)
 
     def __str__(self):
         """ Returns string representation """
@@ -38,7 +38,7 @@ class BaseModel:
         """ Update the public instance attribute
         updated_at with the current datetime """
         self.updated_at = datetime.now()
-        storage.save()
+        models.storage.save()
 
     def to_dict(self):
         """ returns a dictionary containing all keys/values """
